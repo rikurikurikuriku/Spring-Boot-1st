@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmnls:th="http://www.thymeLeaf.org">
+
+<head>
+	<title> Hi! </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+ <div th:if="${age} &lt; 18">You are not permitted to access this page.</div>
+ <div th:if="${age} &gt; 17"> <p th:text="'Hi, ' + ${name} + '!'" /> </div>
+
+</body>
+</html>
