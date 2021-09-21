@@ -5,7 +5,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,7 +55,7 @@ public class BookController {
 		model.addAttribute("categories", crepository.findAll());
 		return "addbook";
 	}
-	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping(value = "/edit/{id}")
 	public String edit(@PathVariable("id") long id, Model model) {
 	    Book book = bookspository.findById(id)
@@ -86,7 +87,7 @@ public class BookController {
 		bookspository.save(book);
 		return "redirect:books";
 	}
-	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	 @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	    public String deleteBook(@PathVariable("id") Long id, Model model) {
 	    	bookspository.deleteById(id);
