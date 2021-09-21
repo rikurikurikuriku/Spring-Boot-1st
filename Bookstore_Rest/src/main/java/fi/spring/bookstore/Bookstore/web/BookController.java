@@ -36,13 +36,13 @@ public class BookController {
 		return "books";
 	}
 	
-	// RESTful service to get all books
+	// RESTful to get all books
     @RequestMapping(value="/bookies", method = RequestMethod.GET)
     public @ResponseBody List<Book>booktListRest() {	
         return (List<Book>) bookspository.findAll();
     }    
     
- // RESTful service to get book by id
+ // RESTful to get book by id
     @RequestMapping(value="/bookie/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {	
     	return bookspository.findById(bookId);
@@ -61,6 +61,7 @@ public class BookController {
 	      .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 	    
 	    model.addAttribute("book", book);
+	    model.addAttribute("categories", crepository.findAll());
 	    return "edit";
 	}
 	
@@ -69,6 +70,7 @@ public class BookController {
 	  BindingResult result, Model model) {
 	    if (result.hasErrors()) {
 	        book.setId(id);
+	        model.addAttribute("categories", crepository.findAll());
 	        return "edit";
 	    }
 	    bookspository.save(book);
@@ -76,7 +78,11 @@ public class BookController {
 	    
 	}
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveBook(Book book) {
+	public String saveBook(@Valid Book book, BindingResult binding, Model model) {
+		if (binding.hasErrors()) {
+			model.addAttribute("categories", crepository.findAll());
+			return "addbook";
+		}
 		bookspository.save(book);
 		return "redirect:books";
 	}

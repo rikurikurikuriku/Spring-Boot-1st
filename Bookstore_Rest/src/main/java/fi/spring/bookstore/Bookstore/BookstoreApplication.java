@@ -25,7 +25,7 @@ public class BookstoreApplication {
 		repository1.save(new Category("Non-Fiction"));
 		
 		repository.save(new Book(1, "The Old Man and The Sea", "Ernest Hemingway", 1934, 1111, 19.90, repository1.findByName("Fiction").get(0)));	
-	 
+		repository.save(new Book(1, "Testbook", "Some Dude", 2021, 1234, 10.00, repository1.findByName("Fiction").get(0)));
 	};
 	}
 	
