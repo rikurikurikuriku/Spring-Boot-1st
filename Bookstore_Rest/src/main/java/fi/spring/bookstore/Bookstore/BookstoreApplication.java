@@ -1,6 +1,6 @@
 package fi.spring.bookstore.Bookstore;
 
-import org.springframework.boot. CommandLineRunner;
+import org.springframework.boot. CommandLineRunner;   
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +12,7 @@ import fi.spring.bookstore.Bookstore.domain.Category;
 import fi.spring.bookstore.Bookstore.domain.CategoryRepository;
 import fi.spring.bookstore.Bookstore.domain.User;
 import fi.spring.bookstore.Bookstore.domain.UserRepository;
-
+ 
 @SpringBootApplication
 public class BookstoreApplication {
 
